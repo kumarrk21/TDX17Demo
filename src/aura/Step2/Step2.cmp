@@ -1,0 +1,23 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,force:lightningQuickActionWithoutHeader,lightning:actionOverride,force:hasRecordId">
+    <!-- Attributes-->
+    <aura:attribute name="employee" type="Employee__c" default="{ 'sobjectType': 'Employee__c' }" />
+    <aura:attribute name="timeSheet" type="Time_Sheet__c" default="{ 'sobjectType': 'Time_Sheet__c' }" />
+    <!--DOM-->
+    <!-- Input fields -->
+    <lightning:layout horizontalAlign="spread" pullToBoundary="small" multipleRows="true">
+        <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="6" largeDeviceSize="6" flexibility="grow" padding="around-small">
+        	<label class="slds-form-element__label">Employee Dept.</label>
+            <force:inputField aura:id="empDept" value="{!v.employee.Department__c}" />
+        </lightning:layoutItem>
+        <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="6" largeDeviceSize="6" flexibility="grow" padding="around-small">
+        	 <label class="slds-form-element__label">Employee Name</label>
+            <force:inputField aura:id="empId" value="{!v.timeSheet.Employee__c}" />
+        </lightning:layoutItem>
+    </lightning:layout>
+    <!-- Buttons -->
+    <div class="slds-grid slds-wrap slds-grid_pull-padded slds-m-top_small">
+        <lightning:button variant="brand" label="Show" class="slds-col slds-m-around_x-small" />
+    	<lightning:button variant="neutral" label="Cancel" class="slds-col slds-m-around_x-small" />
+    </div>
+
+</aura:component>

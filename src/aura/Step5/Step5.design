@@ -1,0 +1,4 @@
+<design:component label="Step 5" >
+<design:attribute name="showHeaderBar" label="Show Header Bar" description="Show a header bar in case of quick actions without header" />
+
+</design:component>

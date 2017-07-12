@@ -1,0 +1,30 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,force:lightningQuickActionWithoutHeader,lightning:actionOverride,force:hasRecordId" controller="TDXDemoApexController">
+    <!-- Event Handler -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <!-- Attributes-->
+    <aura:attribute name="employeeList" type="List" />
+    <!-- DOM -->
+    <div class="slds-grid slds-wrap ">
+        <lightning:button class="slds-col slds-m-bottom_small" variant="neutral" label="Go Back" onclick="{!c.goBack}" />
+    </div>
+    <ui:scrollerWrapper class="scrollerSize">
+        <aura:iteration items="{!v.employeeList}" var="emp">
+            <lightning:card iconName="utility:user">
+                <aura:set attribute="title">
+                    {!emp.Name__c}
+                </aura:set>
+                <aura:set attribute="actions">
+                    <lightning:buttonIcon iconName="utility:chevronright" variant="bare" size="large" name="{!emp.Id}" />
+                </aura:set>
+                <div class="slds-tile__detail slds-text-body_small slds-p-horizontal_small">
+                    <dl class="slds-list_horizontal slds-wrap">
+                        <dt class="slds-item_label slds-text-color_weak slds-truncate" title="Department">Department:</dt>
+                        <dd class="slds-item_detail slds-truncate" title="Description for first label">{!emp.Department__c}</dd>
+                        <dt class="slds-item_label slds-text-color_weak slds-truncate" title="Email">Email:</dt>
+                        <dd class="slds-item_detail slds-truncate" title="Description for first label">{!emp.Email_ID__c}</dd>
+                    </dl>
+                </div>
+            </lightning:card>
+        </aura:iteration>
+    </ui:scrollerWrapper>
+</aura:component>

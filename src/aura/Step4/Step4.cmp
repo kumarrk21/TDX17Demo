@@ -1,0 +1,70 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,force:lightningQuickActionWithoutHeader,lightning:actionOverride,force:hasRecordId" controller="TDXDemoApexController">
+    <!-- Attributes -->
+    <aura:attribute name="empId" type="String" access="GLOBAL" default="a006A000001zzbv" />
+    <aura:attribute name="empName" type="String" />
+    <aura:attribute name="timeSheetList" type="List" />
+
+    <!-- Event Handlers-->
+    <aura:handler name="init" value="{!this}" action="{!c.fetchEmpTimeSheet}" />
+    <!-- DOM -->
+
+    <!--*************************** -->
+    <!--BUTTONS -->
+    <!--*************************** -->
+    <div class="slds-grid slds-wrap ">
+        <lightning:button variant="brand" label="Approve" class="slds-col slds-m-around_x-small" onclick="{!c.approve}" />
+        <lightning:button variant="neutral" label="Approve All" class="slds-col slds-m-around_x-small slds-button_success slds-text-color_inverse" onclick="{!c.approve}" />
+    </div>
+
+    <p>Employee Name: {!v.empName}</p>
+
+    <!--*************************** -->
+    <!--TABLE -->
+    <!--*************************** -->
+    <table class="slds-table slds-table--bordered slds-max-medium-table--stacked slds-table--striped slds-table--fixed-layout slds-m-bottom--small slds-no-row-hover slds-m-top_x-small">
+        <thead>
+            <tr class="slds-text-heading--label">
+                <th scope="col">
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate">Week</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate">Date</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate">WBS</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate">Hours</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate">Comments</div>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <aura:iteration items="{!v.timeSheetList}" var="ts">
+                <tr>
+                    <td class="slds-cell-wrap slds-truncate" data-label="Approve">
+                        <div class="slds-form-element">
+                            <div class="slds-form-element__control">
+                                <span class="slds-checkbox">
+                                <input type="checkbox" name="options" id="{!ts.Id}" aura:id="approve" checked="" />
+                                <label class="slds-checkbox__label" for="{!ts.Id}">
+                                    <span class="slds-checkbox_faux"></span>
+                                </label>
+                                </span>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="slds-cell-wrap slds-truncate" data-label="Week">{!ts.Week__c}</td>
+                    <td class="slds-cell-wrap slds-truncate" data-label="Date">{!ts.Work_Date__c}</td>
+                    <td class="slds-cell-wrap slds-truncate" data-label="WBS">{!ts.WBS__c}</td>
+                    <td class="slds-cell-wrap slds-truncate" data-label="Hours">{!ts.Hours__c}</td>
+                    <td class="slds-cell-wrap slds-truncate" data-label="Comments">{!ts.Comments__c}</td>
+                </tr>
+            </aura:iteration>
+        </tbody>
+    </table>
+</aura:component>

@@ -1,0 +1,4 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,force:lightningQuickActionWithoutHeader,lightning:actionOverride,force:hasRecordId">
+	<ltng:require styles="{!$Resource.TDXDemoOverride}" />
+	<c:TDXDemoTimeSheetCmp showHeaderBar="false"/>
+</aura:component>

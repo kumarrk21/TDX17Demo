@@ -1,0 +1,3 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,force:lightningQuickaction,lightning:actionOverride">
+	<p>Step 1 of Demo</p>
+</aura:component>

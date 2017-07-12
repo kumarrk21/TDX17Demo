@@ -1,0 +1,38 @@
+<aura:component controller="TDXDemoApexController">
+    <!-- Raises these Events -->
+    <aura:registerEvent name="timeSheetEvents" type="c:TDXDemoTimeSheetCmpEvents" />
+    <!-- Event Handler -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <!-- Attributes-->
+    <aura:attribute name="employeeList" type="List" />
+    <aura:attribute name="showHeaderBar" type="Boolean" default="false" access="GLOBAL"/>
+    <!-- DOM -->
+    <c:S1ScrollWrapper topHeight="50" bottomHeight="50">
+        <c:S1ScrollWrapperTop >
+            <c:TDXDemoHeaderBar showHeaderBar="{!v.showHeaderBar}" screenNumber="2"/>
+        </c:S1ScrollWrapperTop>
+        <c:S1ScrollWrapperBody >
+            <aura:iteration items="{!v.employeeList}" var="emp">
+                <lightning:card iconName="utility:user">
+                    <aura:set attribute="title">
+                        {!emp.Name__c}
+                    </aura:set>
+                    <aura:set attribute="actions">
+                        <lightning:buttonIcon iconName="utility:chevronright" variant="bare" size="large" onclick="{!c.showTimeSheet}" name="{!emp.Id}" />
+                    </aura:set>
+                    <div class="slds-tile__detail slds-text-body_small slds-p-horizontal_small">
+                        <dl class="slds-list_horizontal slds-wrap">
+                            <dt class="slds-item_label slds-text-color_weak slds-truncate" title="Department">Department:</dt>
+                            <dd class="slds-item_detail slds-truncate" title="Description for first label">{!emp.Department__c}</dd>
+                            <dt class="slds-item_label slds-text-color_weak slds-truncate" title="Email">Email:</dt>
+                            <dd class="slds-item_detail slds-truncate" title="Description for first label">{!emp.Email_ID__c}</dd>
+                        </dl>
+                    </div>
+                </lightning:card>
+            </aura:iteration>
+        </c:S1ScrollWrapperBody>
+        <c:S1ScrollWrapperBottom >
+            <c:TDXDemoBottomBar />
+        </c:S1ScrollWrapperBottom>
+    </c:S1ScrollWrapper>
+</aura:component>

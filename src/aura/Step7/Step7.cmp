@@ -1,0 +1,57 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,force:lightningQuickActionWithoutHeader,lightning:actionOverride,force:hasRecordId" controller="TDXDemoApexController">
+    <!-- Event Handler -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <!-- Attributes-->
+    <aura:attribute name="employeeList" type="List" />
+    <!-- DOM -->
+    <c:S1ScrollWrapper topHeight="50" bottomHeight="50">
+        <c:S1ScrollWrapperTop >
+            <div class="slds-grid slds-wrap ">
+                <lightning:button class="slds-col slds-m-bottom_small" variant="neutral" label="Go Back" onclick="{!c.goBack}" />
+            </div>
+        </c:S1ScrollWrapperTop>
+        <c:S1ScrollWrapperBody >
+            <aura:iteration items="{!v.employeeList}" var="emp">
+                <lightning:card iconName="utility:user">
+                    <aura:set attribute="title">
+                        {!emp.Name__c}
+                    </aura:set>
+                    <aura:set attribute="actions">
+                        <lightning:buttonIcon iconName="utility:chevronright" variant="bare" size="large" name="{!emp.Id}" />
+                    </aura:set>
+                    <div class="slds-tile__detail slds-text-body_small slds-p-horizontal_small">
+                        <dl class="slds-list_horizontal slds-wrap">
+                            <dt class="slds-item_label slds-text-color_weak slds-truncate" title="Department">Department:</dt>
+                            <dd class="slds-item_detail slds-truncate" title="Description for first label">{!emp.Department__c}</dd>
+                            <dt class="slds-item_label slds-text-color_weak slds-truncate" title="Email">Email:</dt>
+                            <dd class="slds-item_detail slds-truncate" title="Description for first label">{!emp.Email_ID__c}</dd>
+                        </dl>
+                    </div>
+                </lightning:card>
+            </aura:iteration>
+        </c:S1ScrollWrapperBody>
+        <c:S1ScrollWrapperBottom >
+            <div class="slds-align_absolute-center">
+                <lightning:button class="slds-col slds-m-top_small" variant="neutral" label="Show Modal" onclick="{!c.showModal}" />
+            </div>
+        </c:S1ScrollWrapperBottom>
+    </c:S1ScrollWrapper>
+    <div aura:id="_modal" id="_modal" class="slds-hide">
+        <div aria-hidden="false" role="dialog" class="slds-modal slds-modal--prompt slds-fade-in-open">
+            <div class="slds-modal__container slds-modal--prompt">
+                <div class="slds-modal__header slds-theme--error slds-theme--alert-texture">
+                    <h2 id="_modalHeader" class="slds-text-heading--medium">Header</h2>
+                </div>
+                <div class="slds-modal__content">
+                    <p id="_modalBody">Sample Modal!!</p>
+                </div>
+                <div class="slds-modal__footer slds-theme--default">
+                    <div class="slds-x-small-buttons--horizontal">
+                        <button class="slds-button slds-button--neutral" onclick="{!c.hideModal}">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slds-backdrop slds-backdrop--open"></div>
+    </div>
+</aura:component>

@@ -1,0 +1,20 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,force:lightningQuickActionWithoutHeader,lightning:actionOverride,force:hasRecordId">
+    <!-- Event Handlers -->
+    <aura:handler name="timeSheetEvents" event="c:TDXDemoTimeSheetCmpEvents" action="{!c.handleCompEvents}" />
+    <!-- Attributes -->
+    <aura:attribute name="showHeaderBar" type="Boolean" default="true" access="GLOBAL"/>
+    <aura:attribute name="showEmpList" type="Boolean" default="false" />
+    <aura:attribute name="showTimeSheet" type="Boolean" default="false" />
+    <aura:attribute name="empId" type="String" default="" />
+    <!-- DOM -->
+    <div aura:id="homeContainer">
+        <c:TDXDemoTimeSheetHomeCmp showHeaderBar="{!v.showHeaderBar}"  />
+    </div>
+    <!-- Employee List-->
+    <aura:if isTrue="{!v.showEmpList}">
+        <c:TDXDemoEmployeeListCmp showHeaderBar="{!v.showHeaderBar}" />
+    </aura:if>
+    <aura:if isTrue="{!v.showTimeSheet}">
+        <c:TDXDemoEmpTimeSheetCmp empId="{!v.empId}" showHeaderBar="{!v.showHeaderBar}" />
+    </aura:if>
+</aura:component>

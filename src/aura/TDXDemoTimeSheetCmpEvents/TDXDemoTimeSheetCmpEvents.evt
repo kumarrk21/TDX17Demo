@@ -1,0 +1,6 @@
+<aura:event type="COMPONENT" description="Timesheet Component Events">
+	<aura:attribute name="showHome" type="Boolean"/>
+	<aura:attribute name="showEmpList" type="Boolean"/>
+	<aura:attribute name="showTimeSheet" type="Boolean"/>
+	<aura:attribute name="empId" type="String"/>
+</aura:event>

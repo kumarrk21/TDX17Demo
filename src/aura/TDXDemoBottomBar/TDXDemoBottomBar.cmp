@@ -1,0 +1,16 @@
+<aura:component >
+    <lightning:layout horizontalAlign="spread" pullToBoundary="small" class="slds-border--top">
+        <lightning:layoutItem size="3" flexibility="grow" padding="around-small" class="slds-align--absolute-center">
+            <lightning:icon iconName="action:add_contact" size="small" />
+        </lightning:layoutItem>
+        <lightning:layoutItem size="3" flexibility="grow" padding="around-small" class="slds-align--absolute-center">
+            <lightning:icon iconName="action:call" size="small" />
+        </lightning:layoutItem>
+        <lightning:layoutItem size="3" flexibility="grow" padding="around-small" class="slds-align--absolute-center">
+            <lightning:icon iconName="action:clone" size="small" />
+        </lightning:layoutItem>
+        <lightning:layoutItem size="3" flexibility="grow" padding="around-small" class="slds-align--absolute-center">
+            <lightning:icon iconName="action:more" size="small" />
+        </lightning:layoutItem>
+    </lightning:layout>
+</aura:component>

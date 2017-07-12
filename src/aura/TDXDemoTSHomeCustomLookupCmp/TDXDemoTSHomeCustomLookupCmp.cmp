@@ -1,0 +1,34 @@
+<aura:component >
+    <!-- Raises these Events -->
+    <aura:registerEvent name="timeSheetEvents" type="c:TDXDemoTimeSheetCmpEvents" />
+    <!-- Event Hanlders -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler event="c:LookupCmpEvents" action="{!c.handleLookupEvents}" />
+    <!-- Attributes-->
+    <aura:attribute name="showHeaderBar" type="Boolean" default="false" access="GLOBAL" />
+    <aura:attribute name="empLookup" type="Object" />
+    <aura:attribute name="lookupEmp" type="Boolean" default="false" />
+    <aura:attribute name="selectedEmpId" type="String" default="" />
+    <aura:attribute name="selectedEmpName" type="String" default="" />
+    <aura:attribute name="selectedDept" type="String" default="" />
+    <!--DOM -->
+    <c:TDXDemoHeaderBar showHeaderBar="{!v.showHeaderBar}" screenNumber="1" />
+    <aura:if isTrue="{!v.lookupEmp}">
+        <c:LookupComponent lookupObjectAPI="{!v.empLookup}" source="EmpLookup" multiSelect="false" />
+    </aura:if>
+    <div aura:id="mainContainer">
+        <div class="slds-grid slds-wrap ">
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-2 slds-p-around_x-small">
+                <lightning:input type="text" label="Department" name="SelectedDept" value="{!v.selectedDept}" />
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-2 slds-p-around_x-small">
+                <lightning:input type="text" label="Employee" name="(!v.selectedEmpId}" value="{!v.selectedEmpName}" onfocus="{!c.showEmpLookup}" />
+            </div>
+        </div>
+        <!-- Buttons -->
+        <div class="slds-grid slds-wrap  slds-m-top_small">
+            <lightning:button variant="brand" label="Show" class="slds-col slds-m-around_x-small" onclick="{!c.getEmployeeList}" />
+            <lightning:button variant="neutral" label="Cancel" class="slds-col slds-m-around_x-small" onclick="{!c.doCancel}" />
+        </div>
+    </div>
+</aura:component>

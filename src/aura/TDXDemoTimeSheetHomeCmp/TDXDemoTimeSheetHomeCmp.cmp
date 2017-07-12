@@ -1,0 +1,35 @@
+<aura:component >
+    <!-- Raises these Events -->
+    <aura:registerEvent name="timeSheetEvents" type="c:TDXDemoTimeSheetCmpEvents" />
+    <!-- Attributes-->
+    <aura:attribute name="employee" type="Employee__c" default="{ 'sobjectType': 'Employee__c' }" />
+    <aura:attribute name="timeSheet" type="Time_Sheet__c" default="{ 'sobjectType': 'Time_Sheet__c' }" />
+    <aura:attribute name="showHeaderBar" type="Boolean" default="false" access="GLOBAL" />
+    <!--DOM -->
+    <c:TDXDemoHeaderBar showHeaderBar="{!v.showHeaderBar}" screenNumber="1" />
+
+    <div class="slds-grid slds-wrap slds-grid_pull-padded">
+        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-2 slds-p-around_x-small">
+            <div class="slds-form-element">
+                <label class="slds-form-element__label">Employee Dept.</label>
+                <div class="slds-form-element__control">
+                    <force:inputField aura:id="empDept" value="{!v.employee.Department__c}" />
+                </div>
+            </div>
+        </div>
+        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-2 slds-p-around_x-small">
+            <div class="slds-form-element">
+                <label class="slds-form-element__label">Employee Name</label>
+                <div class="slds-form-element__control">
+                    <force:inputField aura:id="empId" value="{!v.timeSheet.Employee__c}" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="slds-grid slds-wrap slds-grid_pull-padded slds-m-top_small">
+        <lightning:button variant="brand" label="Show" class="slds-col slds-m-around_x-small" onclick="{!c.getEmployeeList}" />
+        <lightning:button variant="neutral" label="Cancel" class="slds-col slds-m-around_x-small" />
+    </div>
+</aura:component>

@@ -1,0 +1,3 @@
+<aura:tokens >
+    <aura:token name="colorBackgroundButtonBrand" value="#ffb75d"/>
+</aura:tokens>

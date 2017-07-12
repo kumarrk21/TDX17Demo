@@ -1,0 +1,3 @@
+<design:component label="Time Sheets Adv" >
+<design:attribute name="showHeaderBar" label="Show Header Bar" description="Show a header bar in case of quick actions without header" />
+</design:component>

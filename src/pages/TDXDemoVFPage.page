@@ -1,0 +1,51 @@
+<apex:page showHeader="true" sidebar="true" controller="TDXDemoVFPageController" docType="html-5.0">
+    <script>
+    function confirmCancel() {
+        var isCancel = confirm("Are you sure you wish to cancel?");
+        if (isCancel){
+        	//window.history.back();		
+        	return true;
+        }
+
+        return false;
+    }
+    </script>
+    <apex:sectionHeader title="Approve Time sheets" />
+    <apex:form rendered="{!showInit}">
+        <apex:pageBlock title="" mode="edit">
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!showTimeSheets}" value="Show" />
+                <apex:commandButton value="Cancel" onclick="return confirmCancel()" immediate="true" />
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection title="Search by Employee">
+                <apex:inputField id="employeeName" value="{!tsheet.Employee__c}" />
+                <apex:inputField id="employeeDept" value="{!employee.Department__c}" />
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+    <apex:pageBlock title="Available Employees" rendered="{!showTimeSheetsForAll}">
+        <apex:pageBlockTable value="{!employeeList}" var="emp">
+            <apex:column headerValue="">
+                <apex:outputLink value="/apex/TDXDemoVFPage?action=viewTS&empId={!emp.id}" id="theLink">View</apex:outputLink>
+            </apex:column>
+            <apex:column value="{!emp.First_Name__c}" />
+            <apex:column value="{!emp.Last_Name__c}" />
+            <apex:column value="{!emp.Email_ID__c}" />
+            <apex:column value="{!emp.Department__c}" />
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+    <apex:pageBlock title="Time Sheet for {!empTSName}" rendered="{!showTimeSheet}">
+    	<apex:form >
+    		<apex:commandButton action="{!approveTS}" value="Approve" />
+    		<apex:commandButton action="{!cancel}" value="Cancel" onclick="return confirmCancel()" immediate="true" />
+    		
+    	</apex:form>
+        <apex:pageBlockTable value="{!tslist}" var="ts" style="table-layout:fixed">
+            <apex:column value="{!ts.Work_Date__c}" />
+            <apex:column value="{!ts.Week__c}" />
+            <apex:column value="{!ts.WBS__c}" />
+            <apex:column value="{!ts.Hours__c}" />
+            <apex:column value="{!ts.Comments__c}" style="overflow:hidden;white-space:nowrap" />
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+</apex:page>
